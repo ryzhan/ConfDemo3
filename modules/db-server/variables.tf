@@ -44,12 +44,12 @@ variable "subnetwork" {
 }
 
 variable "public_key_path" {
-  type = "map"
   description = "public key for user Jenkins"
-  #default     = "/var/lib/jenkins/.ssh/id_rsa.pub"
-  default = {
-        "jenkins" = "/var/lib/jenkins/.ssh/id_rsa.pub"
-    }   
+  #type = "map"
+  default     = "/var/lib/jenkins/.ssh/id_rsa.pub"
+  #default = {
+  #      "jenkins" = "/var/lib/jenkins/.ssh/id_rsa.pub"
+  #  }    
 }
 
 variable "private_key_path" {

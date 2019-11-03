@@ -6,7 +6,8 @@ resource "google_compute_instance" "app-server" {
   tags = ["app-server","http-server"]
 
   metadata = {
-   ssh-keys = "${var.user_name}:${file(var.public_key_path["${var.user_name}"])}"
+   #ssh-keys = "${var.user_name}:${file(var.public_key_path["${var.user_name}"])}"
+   ssh-keys = "${var.user_name}:${file(var.public_key_path)}"
   }
 
   metadata_startup_script = ""
