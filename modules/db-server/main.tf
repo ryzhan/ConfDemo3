@@ -31,7 +31,7 @@ resource "null_resource" "db-server-prov" {
  
 connection {
     type = "ssh"
-    user = "erkek"
+    user = var.user_name
     host = "${google_compute_instance.db-server.network_interface.0.access_config.0.nat_ip}"
     private_key = "${file(var.private_key_path)}"
     agent = false   
