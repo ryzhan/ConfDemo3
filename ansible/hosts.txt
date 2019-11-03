@@ -3,3 +3,7 @@ app-server
 
 [db]
 db-server
+
+[server_all:children]
+app
+db
