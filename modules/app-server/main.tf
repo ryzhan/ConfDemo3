@@ -31,7 +31,7 @@ resource "null_resource" "app-server-prov" {
  
 connection {
     type = "ssh"
-    user = var.user_name
+    user = "jenkins"
     host = "${google_compute_instance.app-server.network_interface.0.access_config.0.nat_ip}"
     private_key = "${file(var.private_key_path)}"
     agent = false   
