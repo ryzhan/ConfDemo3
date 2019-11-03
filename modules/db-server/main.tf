@@ -5,7 +5,7 @@ resource "google_compute_instance" "db-server" {
   tags = ["db-server"]
 
   metadata = {
-   ssh-keys = "${var.user_name}:${file(var.public_key_path)}"
+   ssh-keys = "${var.user_name}:${file(var.public_key_path["${var.user_name}"])}"
   }
 
   metadata_startup_script = ""
