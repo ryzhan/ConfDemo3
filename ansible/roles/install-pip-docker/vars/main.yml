@@ -1,6 +1,6 @@
 ---
 # vars file for install-pip-docker
-user_name: erkek
+#user_name: jenkins
 ansible_ssh_privat_key_file: /var/lib/jenkins/.ssh/
 
 # Versions for the python packages that are installed installed
