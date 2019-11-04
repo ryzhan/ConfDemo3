@@ -32,7 +32,7 @@ resource "null_resource" "db-server-prov" {
  
 connection {
     type = "ssh"
-    user = "erkek"
+    user = "jenkins"
     host = "${google_compute_instance.db-server.network_interface.0.access_config.0.nat_ip}"
     private_key = "${file(var.private_key_path)}"
     agent = false   
@@ -55,7 +55,7 @@ connection {
     destination = "/tmp/id_rsa.pub"
 
   }
-  
+
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/scenario_db.sh",
