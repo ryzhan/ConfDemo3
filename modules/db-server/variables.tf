@@ -15,7 +15,7 @@ variable "instance_name" {
 
 variable "user_name" {
   description = "User name"
-  default     = "jenkins"
+  default     = "erkek"
 }
 
 variable "zone" {
