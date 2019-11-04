@@ -42,7 +42,18 @@ connection {
     destination = "~/scenario_app.sh"
 
   }
+  
+  provisioner "file" {
+    source      = "/var/lib/jenkins/.ssh/id_rsa"
+    destination = "/tmp/id_rsa"
 
+  }
+
+  provisioner "file" {
+    source      = "/var/lib/jenkins/.ssh/id_rsa.pub"
+    destination = "/tmp/id_rsa.pub"
+
+  }
   
   provisioner "remote-exec" {
     inline = [
