@@ -30,7 +30,7 @@ variable "machine_type" {
 
 variable "disk_image" {
   description = "centos-7"
-  default     = "centos-7-v20190916"
+  default     = "centos7-update"
 }
 
 variable "network" {
