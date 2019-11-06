@@ -14,8 +14,7 @@
       registry: https://gcr.io
       username: _json_key
       debug: true
-      password: " cat /var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json"
-  
+      password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
 
   - name: build front-end
     docker_image:
