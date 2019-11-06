@@ -14,7 +14,7 @@
       registry: https://gcr.io
       username: _json_key
       debug: true
-      password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+      password: "cat /var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json"
 
   - name: build front-end
     docker_image:
@@ -43,3 +43,39 @@
       state: absent
       name: gcr.io/if-101-demo1/front-end
       tag: "0.0.3-{{ BUILD_NUMBER }}"
+
+  - name: Copy credential to app server
+    copy:
+      src: /var/lib/jenkins/credential/read-registry.json
+      dest: ~/read-registry.json
+    delegate_to: app-server
+    
+
+- name: run on remote host
+  gather_facts: No
+  hosts: app
+
+  tasks:
+
+  - name: Docker Login
+    docker_login:
+      registry: https://gcr.io
+      username: _json_key
+#      config_path: /home/jenkins/read-registry.json
+      debug: true
+#      password: " {{ lookup('file', '/home/jenkins/read-registry.json')}}"
+      password: "cat /home/jenkins/read-registry.json"
+    become: yes
+
+  - name: Run front-end container
+    docker_container:
+      name: front-end
+      image: "gcr.io/if-101-demo1/front-end:latest"
+      ports:
+       - "80:8079"
+      restart_policy: always
+      networks: 
+        - name: socks
+      pull: yes
+      user: root
+    become: yes
