@@ -15,6 +15,7 @@
       username: _json_key
       debug: true
       password: "cat /var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json"
+    become: yes
 
   - name: build front-end
     docker_image:
