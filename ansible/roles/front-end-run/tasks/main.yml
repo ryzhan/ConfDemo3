@@ -1,14 +1,14 @@
 ---
 # tasks file for front-end-run
 - name: Docker Login
-    docker_login:
-      registry: https://gcr.io
-      username: _json_key
-      debug: true
-      password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
-    become: yes
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+  become: yes
 #      password: "cat /home/jenkins/read-registry.json"
-   
+  
 - name: Run front-end container
   docker_container:
     name: front-end

@@ -2,9 +2,9 @@
 # tasks file for front-end-build
 
 - name: Clone front-end
-    git:
-      repo: 'https://github.com/ryzhan/front-end.git'
-      dest: /var/lib/jenkins/microservices/front-end
+  git:
+    repo: 'https://github.com/ryzhan/front-end.git'
+    dest: /var/lib/jenkins/microservices/front-end
 
 - name: Docker Login
   docker_login:
