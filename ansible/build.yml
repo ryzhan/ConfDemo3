@@ -21,6 +21,7 @@
       name: gcr.io/if-101-demo1/front-end:3.0.0-{{ BUILD_NUMBER }}
       build:
         path: /var/lib/jenkins/microservices/front-end
+        pull: yes
       source: build
       push: yes
 
@@ -63,8 +64,8 @@
       username: _json_key
 #      config_path: /home/jenkins/read-registry.json
       debug: true
-#      password: " {{ lookup('file', '/home/jenkins/read-registry.json')}}"
-      password: "cat /home/jenkins/read-registry.json"
+      password: " {{ lookup('file', '/home/jenkins/read-registry.json')}}"
+#      password: "cat /home/jenkins/read-registry.json"
     become: yes
 
   - name: Run front-end container
