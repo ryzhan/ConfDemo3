@@ -51,7 +51,7 @@
       dest: ~/read-registry.json
     delegate_to: app-server
     
-`
+
 - name: run on remote host
   gather_facts: No
   hosts: app
