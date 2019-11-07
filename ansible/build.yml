@@ -4,12 +4,12 @@
   hosts: localhost
 
   roles:
-    - front-end-build
+    - { role: front-end-build,  tags: front-end-build }
   
 - name: run docker container in app-server
   gather_facts: No
   hosts: app
 
   roles:
-    - front-end-run
+    - { role: front-end-run,  tags: front-end-run }
   
