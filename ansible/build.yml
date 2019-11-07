@@ -51,7 +51,7 @@
       dest: ~/read-registry.json
     delegate_to: app-server
     
-
+`
 - name: run on remote host
   gather_facts: No
   hosts: app
@@ -65,8 +65,8 @@
 #      config_path: /home/jenkins/read-registry.json
       debug: true
 #      password: " {{ lookup('file', '~/read-registry.json')}}"
-      password: " cat /home/jenkins/read-registry.json"
-#    become: yes
+      password: "cat /home/jenkins/read-registry.json"
+    become: yes
 
   - name: Run front-end container
     docker_container:
