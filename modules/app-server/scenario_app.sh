@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo setenforce Permissive
 # sudo su <<_EOF_
 # useradd -m jenkins
 # mkdir -p /home/jenkins/.ssh

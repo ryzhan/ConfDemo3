@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo setenforce Permissive
 # sudo yum update -y
 # yum provides '*/applydeltarpm'
 # yum install deltarpm -y
