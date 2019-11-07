@@ -64,9 +64,9 @@
       username: _json_key
 #      config_path: /home/jenkins/read-registry.json
       debug: true
-      password: " {{ lookup('file', '/home/jenkins/read-registry.json')}}"
+      password: " {{ lookup('file', '/home/jenkins/read-registry.json') }}"
 #      password: "cat /home/jenkins/read-registry.json"
-    become: yes
+#    become: yes
 
   - name: Run front-end container
     docker_container:
