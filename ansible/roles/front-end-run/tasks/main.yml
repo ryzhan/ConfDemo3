@@ -20,6 +20,6 @@
       - name: socks
     pull: yes
     recreate: yes
-    state: present 
+    state: started 
     user: root
   become: yes
