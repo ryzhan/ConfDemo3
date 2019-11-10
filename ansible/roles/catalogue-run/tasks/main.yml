@@ -15,10 +15,10 @@
     ports:
       - "8080:80"
     restart_policy: always
-    networks: 
+    networks:
       - name: socks
     etc_hosts:
-        catalogue-db: "{{ db-host }}"
+        catalogue-db: "{{ db_host }}"
     pull: yes
-    user: jenkins
+    user: root
   become: yes
