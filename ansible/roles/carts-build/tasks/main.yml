@@ -7,10 +7,10 @@
     dest: "{{ WORKSPACE }}/microservices/carts"
 
 - name: Running mvn clean
-    shell: mvn clean package
-    args:
-      chdir: "{{ WORKSPACE }}/microservices/carts"
-    register: mvn_result
+  shell: mvn clean package
+  args:
+    chdir: "{{ WORKSPACE }}/microservices/carts"
+  register: mvn_result
 
 - name: "mvn clean task output"
   debug:
