@@ -19,5 +19,7 @@
     networks: 
       - name: socks
     pull: yes
+    recreate: yes
+    state: present 
     user: root
   become: yes

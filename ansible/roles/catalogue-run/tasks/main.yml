@@ -20,5 +20,7 @@
     etc_hosts:
         catalogue-db: "{{ db_host }}"
     pull: yes
+    recreate: yes
+    state: present 
     user: root
   become: yes
