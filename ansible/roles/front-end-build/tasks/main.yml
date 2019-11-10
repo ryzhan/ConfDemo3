@@ -4,7 +4,7 @@
 - name: Clone front-end
   git:
     repo: 'https://github.com/ryzhan/front-end.git'
-    dest: /var/lib/jenkins/microservices/front-end
+    dest: /var/lib/jenkins/workspace/{{ workspace }}/microservece/
 
 - name: Docker Login
   docker_login:
@@ -17,7 +17,7 @@
   docker_image:
     name: gcr.io/if-101-demo1/front-end:3.0.0-{{ BUILD_NUMBER }}
     build:
-      path: /var/lib/jenkins/microservices/front-end
+      path: /var/lib/jenkins/workspace/{{ workspace }}/microservece/
       pull: yes
     source: build
     push: yes
