@@ -5,6 +5,7 @@
 
   roles:
     - { role: front-end-build,  tags: front-end-build }
+    - { role: catalogue-build,  tags: catalogue-build }
   
 - name: run docker container in app-server
   gather_facts: No
@@ -12,4 +13,5 @@
 
   roles:
     - { role: front-end-run,  tags: front-end-run }
+    - { role: catalogue-run,  tags: catalogue-run }
   

@@ -1,2 +1,3 @@
 ---
 # vars file for catalogue-run
+ansible_ssh_privat_key_file: /var/lib/jenkins/.ssh/
