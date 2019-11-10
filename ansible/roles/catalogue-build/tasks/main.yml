@@ -20,6 +20,7 @@
       path: "{{ WORKSPACE }}/microservices/catalogue"
       dockerfile: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue/Dockerfile"
       pull: yes
+    debug: yes
     source: build
     push: yes
 

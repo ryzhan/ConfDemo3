@@ -51,7 +51,7 @@
     source: local
     push: yes
 
-- name: Remove image latest
+- name: Remove image 
   docker_image:
     state: absent
     force_absent: yes
@@ -60,15 +60,3 @@
   with_items:
     - "latest"
     - "3.0.0-{{ BUILD_NUMBER }}"
-
-# - name: Remove image latest
-#   docker_image:
-#     state: absent
-#     name: gcr.io/if-101-demo1/catalogue
-#     tag: latest
-
-# - name: Remove image version
-#   docker_image:
-#     state: absent
-#     name: gcr.io/if-101-demo1/catalogue
-#     tag: "0.0.3-{{ BUILD_NUMBER }}"
