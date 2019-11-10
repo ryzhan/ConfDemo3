@@ -4,7 +4,7 @@
 - name: Clone catalogue
   git:
     repo: 'https://github.com/ryzhan/catalogue.git'
-    dest: /var/lib/jenkins/microservices/catalogue
+    dest: "{{ WORKSPACE }}/microservices/catalogue"
 
 - name: Docker Login
   docker_login:
@@ -17,8 +17,8 @@
   docker_image:
     name: gcr.io/if-101-demo1/catalogue:3.0.0-{{ BUILD_NUMBER }}
     build:
-      path: /var/lib/jenkins/microservices/catalogue
-      dockerfile: /var/lib/jenkins/microservices/catalogue/docker/catalogue/Dockerfile
+      path: "{{ WORKSPACE }}/microservices/catalogue"
+      dockerfile: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue/Dockerfile"
       pull: yes
     source: build
     push: yes

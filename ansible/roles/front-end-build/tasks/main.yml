@@ -4,7 +4,7 @@
 - name: Clone front-end
   git:
     repo: 'https://github.com/ryzhan/front-end.git'
-    dest: "{{ WORKSPACE }}/microservice/"
+    dest: "{{ WORKSPACE }}/microservice/front-end"
 
 - name: Docker Login
   docker_login:
@@ -17,7 +17,7 @@
   docker_image:
     name: gcr.io/if-101-demo1/front-end:3.0.0-{{ BUILD_NUMBER }}
     build:
-      path: "{{ WORKSPACE }}/microservice/"
+      path: "{{ WORKSPACE }}/microservice/front-end"
       pull: yes
     source: build
     push: yes
