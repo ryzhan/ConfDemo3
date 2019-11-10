@@ -1,2 +1,27 @@
 ---
 # tasks file for carts-run
+
+- name: Docker Login
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+  become: yes
+  
+- name: Run carts container
+  docker_container:
+    name: carts
+    image: "gcr.io/if-101-demo1/carts:latest"
+    ports:
+      - "8081:80"
+    restart_policy: always
+    networks:
+      - name: socks
+    env:
+      DB_NETWORK_IP: "{{ db_host }}"
+    pull: yes
+    recreate: yes
+    state: started 
+    user: root
+  become: yes
