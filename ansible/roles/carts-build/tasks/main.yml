@@ -7,7 +7,7 @@
     dest: "{{ WORKSPACE }}/microservices/carts"
 
 - name: Running mvn clean
-  shell: mvn clean package
+  shell: mvn clean package -DskipTests
   args:
     chdir: "{{ WORKSPACE }}/microservices/carts"
   register: mvn_result
@@ -15,6 +15,16 @@
 - name: "mvn clean task output"
   debug:
     var: mvn_result
+
+- name: Running mvn clean
+  shell: mvn test
+  args:
+    chdir: "{{ WORKSPACE }}/microservices/carts"
+  register: mvn_result_test
+
+- name: "mvn test task output"
+  debug:
+    var: mvn_result_test
 
 - name: Docker Login
   docker_login:
