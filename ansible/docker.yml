@@ -9,17 +9,25 @@
     - install-docker
     - install-git
     - install-pip-docker
-    
-- name: Create and run db docker containers on db-server
+
+- name: Create  db docker containers on localhost and push to gcp registry
   gather_facts: No
-  hosts: db
+  hosts: localhost
 
   roles:
     - docker-carts-db
     - docker-catalogue-db
-    - docker-user-db
 
-- name: Create docker containers on app-server
+- name: Run db docker containers on db-server
+  gather_facts: No
+  hosts: db
+
+  roles:
+    - docker-carts-db-run
+    - docker-catalogue-db-run
+  #  - docker-user-db
+
+- name: Create docker containers network on app-server
   gather_facts: No
   hosts: app
   

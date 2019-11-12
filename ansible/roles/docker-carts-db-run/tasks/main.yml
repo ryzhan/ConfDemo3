@@ -1,0 +1,24 @@
+---
+# tasks file for carts-db-run
+- name: Docker Login
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+  become: yes
+  
+
+- name: Create and run carts-db container
+  docker_container:
+    name: carts-db
+    image: "gcr.io/if-101-demo1/carts-db:latest"
+    ports:
+     - "27017:27017"
+    restart_policy: always
+    user: root
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  
