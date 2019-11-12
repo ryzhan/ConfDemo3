@@ -1,5 +1,5 @@
 ---
-# tasks file for docker-user-db
+# tasks file for docker-carts-db
 
 - name: Docker Login
   docker_login:
@@ -17,9 +17,7 @@
       pull: yes
     source: build
     push: yes
-  become: yes
-  become_user: root
-  become_method: sudo
+  
 
 - name: TAG carts-db
   docker_image:

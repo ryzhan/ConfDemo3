@@ -15,7 +15,7 @@
   hosts: localhost
 
   roles:
-    - docker-carts-db
+  #  - docker-carts-db
     - docker-catalogue-db
 
 - name: Run db docker containers on db-server
