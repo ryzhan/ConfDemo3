@@ -14,7 +14,7 @@
   become_user: root
   become_method: sudo
 
-  - name: Docker Login
+- name: Docker Login
   docker_login:
     registry: https://gcr.io
     username: _json_key
