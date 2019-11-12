@@ -18,7 +18,7 @@
   docker_image:
     name: gcr.io/if-101-demo1/catalogue-db:3.0.0-{{ BUILD_NUMBER }}
     build:
-      path: {{ WORKSPACE }}/microservices/catalogue/docker/catalogue-db
+      path: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue-db"
       dockerfile: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue-db/Dockerfile"
       pull: yes
     debug: yes
