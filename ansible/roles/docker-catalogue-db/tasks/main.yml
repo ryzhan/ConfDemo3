@@ -3,9 +3,7 @@
     repo: 'https://github.com/ryzhan/catalogue.git'
     dest: "{{ WORKSPACE }}/microservices/catalogue"
     force: yes
-  become: yes
-  become_user: root
-  become_method: sudo
+
 
 - name: Docker Login
   docker_login:
@@ -24,9 +22,7 @@
     debug: yes
     source: build
     push: yes
-  become: yes
-  become_user: root
-  become_method: sudo
+
 
 - name: TAG front-end
   docker_image:
