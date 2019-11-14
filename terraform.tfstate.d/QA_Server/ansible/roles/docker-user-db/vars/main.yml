@@ -1,5 +1,0 @@
----
-# vars file for docker-user-db
-
-#user_name: jenkins
-ansible_ssh_privat_key_file: /var/lib/jenkins/.ssh/
