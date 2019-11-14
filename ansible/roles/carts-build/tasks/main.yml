@@ -42,7 +42,7 @@
       pull: yes
     source: build
     push: yes
-    register: build_carts_result
+  register: build_carts_result
 
 - name: "build carts task output"
   debug:
