@@ -1,0 +1,19 @@
+---
+- name: Build docker image and push to google registry
+  gather_facts: No
+  hosts: localhost
+
+  roles:
+    - { role: front-end-build,  tags: front-end-build }
+    - { role: catalogue-build,  tags: catalogue-build }
+    - { role: carts-build,  tags: carts-build }
+  
+- name: run docker container in app-server
+  gather_facts: No
+  hosts: app
+
+  roles:
+    - { role: front-end-run,  tags: front-end-run }
+    - { role: catalogue-run,  tags: catalogue-run }
+    - { role: carts-run,  tags: carts-run }
+  

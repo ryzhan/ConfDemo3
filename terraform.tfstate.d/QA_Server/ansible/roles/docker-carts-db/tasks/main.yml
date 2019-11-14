@@ -1,0 +1,40 @@
+---
+# tasks file for docker-carts-db
+
+- name: Docker Login
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+
+- name: Build image carts-db
+  docker_image:
+    name: gcr.io/if-101-demo1/carts-db:3.0.0-{{ BUILD_NUMBER }}
+    build:
+      cache_from:
+        - mongo:latest
+      pull: yes
+    source: build
+    push: yes
+  
+
+- name: TAG carts-db
+  docker_image:
+    name: gcr.io/if-101-demo1/carts-db:3.0.0-{{ BUILD_NUMBER }}
+    repository: gcr.io/if-101-demo1/carts-db:latest
+    force_tag: yes
+    source: local
+    push: yes
+
+- name: Remove carts image 
+  docker_image:
+    state: absent
+    force_absent: yes
+    name: gcr.io/if-101-demo1/carts-db
+    tag: "{{ item }}"
+  with_items:
+    - "3.0.0-{{ BUILD_NUMBER }}"
+    - "latest"
+
+

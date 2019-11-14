@@ -1,0 +1,62 @@
+---
+# tasks file for carts-build
+
+- name: Clone catalogue
+  git:
+    repo: 'https://github.com/ryzhan/carts.git'
+    dest: "{{ WORKSPACE }}/microservices/carts"
+
+- name: Running mvn clean package
+  shell: mvn clean package -DskipTests
+  args:
+    chdir: "{{ WORKSPACE }}/microservices/carts"
+  register: mvn_result
+
+- name: "mvn clean task output"
+  debug:
+    var: mvn_result
+
+- name: Running mvn test
+  shell: mvn test
+  args:
+    chdir: "{{ WORKSPACE }}/microservices/carts"
+  register: mvn_result_test
+
+- name: "mvn test task output"
+  debug:
+    var: mvn_result_test
+
+- name: Docker Login
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+
+- name: build carts
+  docker_image:
+    name: gcr.io/if-101-demo1/carts:3.0.0-{{ BUILD_NUMBER }}
+    build:
+      path: "{{ WORKSPACE }}/microservices/carts"
+      dockerfile: "{{ WORKSPACE }}/microservices/carts/Dockerfile"
+      pull: yes
+    source: build
+    push: yes
+
+- name: TAG front-end
+  docker_image:
+    name: gcr.io/if-101-demo1/carts:3.0.0-{{ BUILD_NUMBER }}
+    repository: gcr.io/if-101-demo1/carts:latest
+    force_tag: yes
+    source: local
+    push: yes
+
+- name: Remove image 
+  docker_image:
+    state: absent
+    force_absent: yes
+    name: gcr.io/if-101-demo1/carts
+    tag: "{{ item }}"
+  with_items:
+    - "latest"
+    - "3.0.0-{{ BUILD_NUMBER }}"

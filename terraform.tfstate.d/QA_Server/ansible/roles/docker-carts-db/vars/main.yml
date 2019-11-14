@@ -1,0 +1,4 @@
+---
+# vars file for docker-carts-db
+#user_name: jenkins
+ansible_ssh_privat_key_file: /var/lib/jenkins/.ssh/

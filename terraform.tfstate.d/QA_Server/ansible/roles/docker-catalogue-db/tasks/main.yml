@@ -1,0 +1,45 @@
+- name: Git clone user-db
+  git:
+    repo: 'https://github.com/ryzhan/catalogue.git'
+    dest: "{{ WORKSPACE }}/microservices/catalogue"
+    force: yes
+
+
+- name: Docker Login
+  docker_login:
+    registry: https://gcr.io
+    username: _json_key
+    debug: true
+    password: " {{ lookup('file', '/var/lib/jenkins/credential/if-101-demo1-02c2a2eae285.json')}}"
+
+- name: Build image catalogue-db
+  docker_image:
+    name: gcr.io/if-101-demo1/catalogue-db:3.0.0-{{ BUILD_NUMBER }}
+    build:
+      path: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue-db"
+      dockerfile: "{{ WORKSPACE }}/microservices/catalogue/docker/catalogue-db/Dockerfile"
+      pull: yes
+    debug: yes
+    source: build
+    push: yes
+
+
+- name: TAG front-end
+  docker_image:
+    name: gcr.io/if-101-demo1/catalogue-db:3.0.0-{{ BUILD_NUMBER }}
+    repository: gcr.io/if-101-demo1/catalogue-db:latest
+    force_tag: yes
+    source: local
+    push: yes
+
+- name: Remove image latest
+  docker_image:
+    state: absent
+    force_absent: yes
+    name: gcr.io/if-101-demo1/catalogue-db
+    tag: "{{ item }}"
+  with_items:
+    - "3.0.0-{{ BUILD_NUMBER }}"
+    - "latest"
+
+

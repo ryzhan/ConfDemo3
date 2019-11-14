@@ -1,0 +1,3 @@
+---
+# vars file for front-end-build
+ansible_ssh_privat_key_file: /var/lib/jenkins/.ssh/
