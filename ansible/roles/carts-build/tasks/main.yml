@@ -42,6 +42,11 @@
       pull: yes
     source: build
     push: yes
+    register: build_carts_result
+
+- name: "build carts task output"
+  debug:
+    var: build_carts_result
 
 - name: TAG front-end
   docker_image:
