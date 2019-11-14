@@ -1,0 +1,4 @@
+- name: Build docker image and push to google registry
+  gather_facts: No
+  hosts: localhost
+  var: 
