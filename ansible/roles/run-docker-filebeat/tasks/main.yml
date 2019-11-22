@@ -12,7 +12,7 @@
   docker_container:
     name: filebeat
     image: docker.io/elastic/filebeat:6.8.4
-    network_mode: "my_net"
+    network_mode: "socks"
     command: ["sh","-c","filebeat -e -strict.perms=false"]
     volumes:
       - /tmp/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
