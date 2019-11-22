@@ -45,7 +45,7 @@ resource "google_compute_firewall" "app-server" {
 }
 
 resource "google_compute_firewall" "elk" {
-  name    = "app-server"
+  name    = "elk"
   network = var.network
 
   target_tags = ["elk"]

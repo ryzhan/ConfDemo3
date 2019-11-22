@@ -38,7 +38,7 @@ connection {
   }
 
   provisioner "file" {
-    source      = "./modules/app-server/scenario_elk.sh"
+    source      = "./modules/elk/scenario_elk.sh"
     destination = "~/scenario_elk.sh"
 
   }
