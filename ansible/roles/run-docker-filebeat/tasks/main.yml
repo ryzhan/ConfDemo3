@@ -22,4 +22,5 @@
       output.elasticsearch.hosts: "elk:9200"
     user: root
     recreate: yes
-    state: started  
+    state: started
+  become: yes
