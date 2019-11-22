@@ -2,11 +2,11 @@
 # tasks file for run-dcker-filebeat
 
 - name: copy filebeat conf to db-tf
-    copy:
-      src: ./filebeat.yml
-      dest: /tmp
-      force: yes
-    become: yes
+  copy:
+    src: ./filebeat.yml
+    dest: /tmp
+    force: yes
+  become: yes
 
 - name: Create filebeat container
   docker_container:
