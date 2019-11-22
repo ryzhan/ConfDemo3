@@ -1,0 +1,27 @@
+---
+# tasks file for run-docker-elk
+
+  - name: Create kibana container
+    docker_container:
+      name: kibana
+      image: kibana:6.8.4
+      network_mode: "socks"
+      ports:
+        - "5601:5601"
+      recreate: yes
+      state: started 
+
+  - name: Create ElasticSearch container
+    docker_container:
+      name: elasticsearch
+      image: elasticsearch:6.8.4
+      network_mode: "socks"
+      ports:
+        - "9200:9200"
+        - "9300:9300"
+      env: 
+        ES_JAVA_OPTS: "-Xms750m -Xmx750m"
+      recreate: yes
+      state: started         
+
+  

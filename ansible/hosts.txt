@@ -4,6 +4,10 @@ app-server
 [db]
 db-server
 
+[elk]
+elk
+
 [server_all:children]
 app
 db
+elk

@@ -7,8 +7,9 @@
   roles:
     - update-centos
     - install-docker
-    - install-git
+    #- install-git
     - install-pip-docker
+    - add-docker-network-and-volumes
 
 - name: Create  db docker containers on localhost and push to gcp registry
   gather_facts: No
@@ -25,11 +26,26 @@
   roles:
     - docker-carts-db-run
     - docker-catalogue-db-run
-  #  - docker-user-db
+    - run-docker-filebeat
 
-- name: Create docker containers network on app-server
+- name: Run docker containers on app-server
   gather_facts: No
   hosts: app
-  
+
   roles:
-    - add-docker-network-and-volumes
+    - run-docker-filebeat
+  
+- name: Run elk docker containers on elk-server
+  gather_facts: No
+  hosts: elk
+
+  roles:
+    - run-docker-elk
+
+
+# - name: Create docker containers network on app-server
+#   gather_facts: No
+#   hosts: app
+  
+#   roles:
+#     - add-docker-network-and-volumes
