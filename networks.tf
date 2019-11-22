@@ -44,3 +44,15 @@ resource "google_compute_firewall" "app-server" {
 
 }
 
+resource "google_compute_firewall" "elk" {
+  name    = "app-server"
+  network = var.network
+
+  target_tags = ["elk"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["5601","9200","9300"]
+  }
+
+}

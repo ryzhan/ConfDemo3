@@ -20,3 +20,7 @@ module "app-server" {
   instance_name = "app-server"
 }
 
+module "elk" {
+  source = "./modules/elk"  
+  instance_name = "elk"
+}
