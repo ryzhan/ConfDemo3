@@ -3,7 +3,7 @@
 
 - name: copy filebeat conf to db-tf
   copy:
-    src: ./filebeat.yml
+    src: {{ WORKSPACE }}/filebeat.yml
     dest: /tmp
     force: yes
   become: yes
