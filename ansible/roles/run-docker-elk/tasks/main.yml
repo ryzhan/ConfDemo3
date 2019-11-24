@@ -32,6 +32,8 @@
       env: 
         ES_JAVA_OPTS: "-Xms750m -Xmx750m"
         bootstrap.memory_lock: "true"
+        xpack.security.enabled: "false"
+        discovery.type: "single-node"
        # es.enforce.bootstrap.checks: "true"
       ulimits:
         - "nofile:262144:262144"
