@@ -3,13 +3,13 @@ filebeat.config:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
 
-filebeat.autodiscover:
-  providers:
-    - type: docker
-      multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
-      multiline.negate: false
-      multiline.match: after
-      hints.enabled: true
+# filebeat.autodiscover:
+#   providers:
+#     - type: docker
+#       multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+#       multiline.negate: false
+#       multiline.match: after
+#       hints.enabled: true
 
 processors:
 - add_cloud_metadata: ~
@@ -28,13 +28,18 @@ logging.json: true
 logging.metrics.enabled: false
 
 
-# filebeat.inputs:
-# - type: docker
-#   multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
-#   multiline.negate: false
-#   multiline.match: after
-#   paths: 
-#     - '/var/lib/docker/containers/*/*.log'
+filebeat.inputs:
+- type: docker
+  multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+  multiline.negate: false
+  multiline.match: after
+  combine_partial: true
+  containers:
+    path: "/var/lib/docker/containers"
+    stream: "stdout"
+    ids:
+      - "*"
+  
 
 # processors:
 # - add_docker_metadata:
