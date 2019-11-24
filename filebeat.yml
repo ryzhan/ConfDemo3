@@ -17,7 +17,10 @@
 #   password: 'changeme'
 
 filebeat.inputs:
-- type: container
+- type: docker
+  multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+  multiline.negate: false
+  multiline.match: after
   paths: 
     - '/var/lib/docker/containers/*/*.log'
 
