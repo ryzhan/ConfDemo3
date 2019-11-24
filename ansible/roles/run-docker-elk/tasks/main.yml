@@ -21,7 +21,12 @@
         - "9300:9300"
       env: 
         ES_JAVA_OPTS: "-Xms750m -Xmx750m"
-      user:   elasticsearch
+        bootstrap.memory_lock: true
+      ulimits:
+        - "nofile:262144:262144"
+        - "nproc:65535:65535"
+        - "memlock:-1:-1"
+      #user:   elasticsearch
       recreate: yes
       state: started         
 
