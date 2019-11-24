@@ -1,2 +1,12 @@
 node.name:    elasticksearch
 network.host: elk
+
+discovery.zen.minimum_master_nodes: 1
+action.auto_create_index: false
+indices.cache.cleanup_interval: "1m"
+network.host: "0.0.0.0"
+transport.host: "0.0.0.0"
+bootstrap.memory_lock: true
+node.master: true
+node.data: true
+node.ingest: true
