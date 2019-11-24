@@ -39,8 +39,8 @@
         - "nofile:262144:262144"
         - "nproc:65535:65535"
         - "memlock:-1:-1"
-      #volumes:
-      #  - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:Z
+      volumes:
+        - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:Z
       #user:   elasticsearch
       recreate: yes
       state: started         
