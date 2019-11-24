@@ -3,6 +3,17 @@ filebeat.config:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
 
+filebeat.inputs:
+- type: docker
+  # multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+  # multiline.negate: false
+  # multiline.match: after
+  combine_partial: true
+  containers:
+    path: "/var/lib/docker/containers"
+    stream: "stdout"
+    ids:
+      - "*"
 # filebeat.autodiscover:
 #   providers:
 #     - type: docker
@@ -12,12 +23,21 @@ filebeat.config:
 #       hints.enabled: true
 
 processors:
-- add_cloud_metadata: ~
+- add_docker_metadata:
+    host: "unix:///var/run/docker.sock"
 
-- decode_json_fields:
-    fields: ["message"]
-    target: "json"
-    overwrite_keys: true
+# - decode_json_fields:
+#     fields: ["message"]
+#     target: "json"
+#     overwrite_keys: true
+
+# processors:
+# - add_cloud_metadata: ~
+
+# - decode_json_fields:
+#     fields: ["message"]
+#     target: "json"
+#     overwrite_keys: true
 
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
@@ -28,27 +48,10 @@ logging.json: true
 logging.metrics.enabled: false
 
 
-filebeat.inputs:
-- type: docker
-  multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
-  multiline.negate: false
-  multiline.match: after
-  combine_partial: true
-  containers:
-    path: "/var/lib/docker/containers"
-    stream: "stdout"
-    ids:
-      - "*"
+
   
 
-# processors:
-# - add_docker_metadata:
-#     host: "unix:///var/run/docker.sock"
 
-# - decode_json_fields:
-#     fields: ["message"]
-#     target: "json"
-#     overwrite_keys: true
 
 # output.elasticsearch:
 #   hosts: ["elasticsearch:9200"]
