@@ -21,7 +21,7 @@
         - "9300:9300"
       env: 
         ES_JAVA_OPTS: "-Xms750m -Xmx750m"
-        bootstrap.memory_lock: true
+        bootstrap.memory_lock: "true"
       ulimits:
         - "nofile:262144:262144"
         - "nproc:65535:65535"
