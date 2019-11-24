@@ -11,6 +11,16 @@
       recreate: yes
       state: started 
 
+  - name: copy elasticksearch conf 
+    copy:
+      src: "{{ WORKSPACE }}/elasticsearch.yml"
+      dest: /tmp
+      mode: 0644
+      owner: 1000
+      group: 1000
+      force: yes
+    become: yes
+
   - name: Create ElasticSearch container
     docker_container:
       name: elasticsearch
@@ -26,6 +36,8 @@
         - "nofile:262144:262144"
         - "nproc:65535:65535"
         - "memlock:-1:-1"
+      volumes:
+        - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/
       #user:   elasticsearch
       recreate: yes
       state: started         
