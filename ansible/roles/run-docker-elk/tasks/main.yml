@@ -32,12 +32,13 @@
       env: 
         ES_JAVA_OPTS: "-Xms750m -Xmx750m"
         bootstrap.memory_lock: "true"
+        es.enforce.bootstrap.checks: "true"
       ulimits:
         - "nofile:262144:262144"
         - "nproc:65535:65535"
         - "memlock:-1:-1"
       volumes:
-        - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/
+        - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:Z
       #user:   elasticsearch
       recreate: yes
       state: started         
