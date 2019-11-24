@@ -1,5 +1,5 @@
 node.name:    elasticksearch
-network.host: elk
+#network.host: elk
 
 discovery.zen.minimum_master_nodes: 1
 action.auto_create_index: false
