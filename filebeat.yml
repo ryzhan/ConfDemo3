@@ -1,32 +1,18 @@
-# filebeat.config:
-#   modules:
-#     path: ${path.config}/modules.d/*.yml
-#     reload.enabled: false
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
 
-# filebeat.autodiscover:
-#   providers:
-#     - type: docker
-#       hints.enabled: true
-
-# processors:
-# - add_cloud_metadata: ~
-
-# output.elasticsearch:
-#   hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
-#   username: 'elastic'
-#   password: 'changeme'
-
-filebeat.inputs:
-- type: docker
-  multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
-  multiline.negate: false
-  multiline.match: after
-  paths: 
-    - '/var/lib/docker/containers/*/*.log'
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+      multiline.negate: false
+      multiline.match: after
+      hints.enabled: true
 
 processors:
-- add_docker_metadata:
-    host: "unix:///var/run/docker.sock"
+- add_cloud_metadata: ~
 
 - decode_json_fields:
     fields: ["message"]
@@ -34,11 +20,35 @@ processors:
     overwrite_keys: true
 
 output.elasticsearch:
-  hosts: ["elasticsearch:9200"]
+  hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
   username: 'elastic'
   password: 'changeme'
-  indices:
-    - index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
 
 logging.json: true
 logging.metrics.enabled: false
+
+
+# filebeat.inputs:
+# - type: docker
+#   multiline.pattern: "^[[:space:]]+(at|\\.{3})\\b|^Caused by:"
+#   multiline.negate: false
+#   multiline.match: after
+#   paths: 
+#     - '/var/lib/docker/containers/*/*.log'
+
+# processors:
+# - add_docker_metadata:
+#     host: "unix:///var/run/docker.sock"
+
+# - decode_json_fields:
+#     fields: ["message"]
+#     target: "json"
+#     overwrite_keys: true
+
+# output.elasticsearch:
+#   hosts: ["elasticsearch:9200"]
+#   username: 'elastic'
+#   password: 'changeme'
+#   indices:
+#     - index: "filebeat-%{[agent.version]}-%{+yyyy.MM.dd}"
+
