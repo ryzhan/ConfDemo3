@@ -6,7 +6,7 @@ filebeat.config:
 filebeat.inputs:
 - type: docker
   combine_partial: true
-  encoding: utf-8
+  #encoding: utf-8
   # json.keys_under_root: true
   # json.add_error_key: true
   # json.message_key: log
