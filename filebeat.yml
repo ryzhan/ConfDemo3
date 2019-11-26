@@ -32,13 +32,13 @@ processors:
 - add_docker_metadata: ~
     #host: "unix:///var/run/docker.sock"
 
-- decode_json_fields:
-     fields: ["field1", "field2", ...]
-     process_array: false
-     max_depth: 1
-     target: "json"
-     overwrite_keys: false
-     add_error_key: true
+# - decode_json_fields:
+#      fields: ["field1", "field2", ...]
+#      process_array: false
+#      max_depth: 1
+#      target: "json"
+#      overwrite_keys: false
+#      add_error_key: true
 
 # - decode_json_fields:
 #     fields: ["message"]
