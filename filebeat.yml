@@ -14,10 +14,12 @@ filebeat.inputs:
 - input_type: log
   enabled: true
   paths:
+    - /var/log/messages
     - /var/log/*.log
-  input_type: log
-  document_type: syslog
-  registry: /var/lib/filebeat/registry
+  tags: ["host_log"]
+  # input_type: log
+  # document_type: syslog
+  # registry: /var/lib/filebeat/registry
 
 - type: docker
   combine_partial: true
@@ -76,6 +78,10 @@ output.elasticsearch:
 logging.json: true
 logging.metrics.enabled: false
 
+setup.kibana:
+  host: "elk:5601"
+  username: "elastic"
+  password: "changeme"
 
 
   
