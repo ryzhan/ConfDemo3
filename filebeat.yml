@@ -15,7 +15,7 @@ filebeat.inputs:
   enabled: true
   paths:
     - /var/log/messages
-  #  - /var/log/*.log
+    - /var/log/*.log
   tags: ["host_log"]
   tail_files: true
   # input_type: log
