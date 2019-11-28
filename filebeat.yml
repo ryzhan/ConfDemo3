@@ -11,9 +11,10 @@ modules:
   reload.enabled: false
 
 filebeat.inputs:
-- type: log
+- input_type: log
+  enabled: true
   paths:
-    - /var/log/messages
+    - /var/log/*.log
   input_type: log
   document_type: syslog
   registry: /var/lib/filebeat/registry
