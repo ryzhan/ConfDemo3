@@ -1,14 +1,22 @@
 filebeat.config:
-  - module: system
-    syslog:
-      enabled: true
-      var.paths: ["/var/log/messages"]
+  # - module: system
+  #   syslog:
+  #     enabled: true
+  #     var.paths: ["/var/log/messages"]
   # auth:
   #   enabled: true
   #   var.paths: ["/path/to/log/auth.log*"]
-  # modules:
-  #   path: ${path.config}/modules.d/*.yml
-  #   reload.enabled: false
+modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/messages
+  input_type: log
+  document_type: syslog
+  registry: /var/lib/filebeat/registry
 
 filebeat.inputs:
 - type: docker
