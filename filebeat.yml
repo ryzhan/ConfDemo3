@@ -15,8 +15,9 @@ filebeat.inputs:
   enabled: true
   paths:
     - /var/log/messages
-    - /var/log/*.log
+  #  - /var/log/*.log
   tags: ["host_log"]
+  tail_files: true
   # input_type: log
   # document_type: syslog
   # registry: /var/lib/filebeat/registry
@@ -47,6 +48,7 @@ filebeat.inputs:
 
 processors:
 - add_docker_metadata: ~
+
     #host: "unix:///var/run/docker.sock"
 
 # - decode_json_fields:

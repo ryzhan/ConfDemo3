@@ -23,4 +23,5 @@
     user: root
     recreate: yes
     state: started
+    restart_policy: always
   become: yes

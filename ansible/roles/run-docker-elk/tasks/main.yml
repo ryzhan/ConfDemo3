@@ -10,6 +10,7 @@
         - "5601:5601"
       recreate: yes
       state: started 
+      restart_policy: always
 
   - name: copy elasticksearch conf 
     copy:
@@ -43,6 +44,7 @@
         - /tmp/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:Z
       #user:   elasticsearch
       recreate: yes
-      state: started         
+      state: started       
+      restart_policy: always  
 
   
