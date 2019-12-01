@@ -5,7 +5,7 @@ app-server
 db-server
 
 [elk]
-elk
+elk-server
 
 [server_all:children]
 app

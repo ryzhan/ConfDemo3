@@ -21,6 +21,6 @@ module "app-server" {
 }
 
 module "elk" {
-  source = "./modules/elk"  
-  instance_name = "elk"
+  source = "./modules/elk-server"  
+  instance_name = "elk-server"
 }
