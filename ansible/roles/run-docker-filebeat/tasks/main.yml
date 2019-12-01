@@ -11,7 +11,7 @@
 - name: Create filebeat container
   docker_container:
     name: filebeat
-    image: docker.io/elastic/filebeat:6.8.4
+    image: docker.io/elastic/filebeat:7.4.2
     network_mode: "socks"
     command: ["sh","-c","filebeat -e -strict.perms=false"]
     volumes:
