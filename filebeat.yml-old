@@ -86,7 +86,7 @@ console:
 #logging.metrics.enabled: false
 
 setup.kibana:
-  host: "elk:5601"
+  host: "elk-server:5601"
   username: "elastic"
   password: "changeme"
 
