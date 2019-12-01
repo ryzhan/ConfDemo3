@@ -5,9 +5,12 @@ filebeat:
     -
       paths:
         - /var/log/messages
+        - /var/log/*.*
       encoding: plain
       input_type: log
-      
+      document_type: syslog
+      registry: /var/lib/filebeat/registry
+
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
   username: 'elastic'
