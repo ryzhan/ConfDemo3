@@ -20,7 +20,7 @@
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /var/log:/var/log:ro
     env: 
-      output.elasticsearch.hosts: "elk:9200"
+      output.elasticsearch.hosts: "elk-server:9200"
     user: root
     recreate: yes
     state: started

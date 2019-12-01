@@ -4,6 +4,7 @@ filebeat:
     # Magento log prospector
     -
       paths:
+        - /usr/share/filebeat
         - /var/log/messages
         - /var/log/*.log
       encoding: plain
@@ -14,6 +15,6 @@ filebeat:
       tags: ["system-log"]
 
 output.elasticsearch:
-  hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
+  hosts: '${ELASTICSEARCH_HOSTS:elk-server:9200}'
   username: 'elastic'
   password: 'changeme'
