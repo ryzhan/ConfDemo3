@@ -5,11 +5,13 @@ filebeat:
     -
       paths:
         - /var/log/messages
-        - /var/log/*.*
+        - /var/log/*.log
       encoding: plain
       input_type: log
       document_type: syslog
-      registry: /var/lib/filebeat/registry
+      #registry: /var/lib/filebeat/registry
+      tail_files: true
+      tags: ["systrm-log"]
 
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
