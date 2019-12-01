@@ -8,10 +8,10 @@ filebeat:
         - /var/log/*.log
       encoding: plain
       input_type: log
-      document_type: syslog
+      #document_type: syslog
       #registry: /var/lib/filebeat/registry
-      tail_files: true
-      tags: ["systrm-log"]
+      #tail_files: true
+      tags: ["system-log"]
 
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elk:9200}'
