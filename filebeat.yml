@@ -31,6 +31,13 @@ filebeat:
         ids:
           - "*"
 
+processors:
+  - add_docker_metadata: ~
+
+console:
+  #Pretty print json event
+  pretty: true
+
 output.elasticsearch:
   hosts: '${ELASTICSEARCH_HOSTS:elk-server:9200}'
   username: 'elastic'
