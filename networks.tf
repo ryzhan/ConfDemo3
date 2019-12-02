@@ -52,7 +52,8 @@ resource "google_compute_firewall" "elk" {
 
   allow {
     protocol = "tcp"
-    ports    = ["5601","9200","9300"]
+    #ports    = ["5601","9200","9300"]
+    ports    = ["9200","9300"]
   }
 
 }
