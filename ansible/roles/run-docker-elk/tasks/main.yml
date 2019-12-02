@@ -47,4 +47,35 @@
       state: started       
       restart_policy: always  
 
+  - name: copy nginx.conf to elk-server
+    copy:
+      src: ./nginx.conf
+      dest: /tmp
+      force: yes
+    become: yes
+  
+  - name: copy htpsswd to elk-server
+    copy:
+      src: ./.htpasswd.elk
+      dest: /tmp
+      force: yes
+    become: yes  
+  
+    
+  - name: Create nginx container
+    docker_container:
+      name: nginx
+      image: nginx
+      network_mode: "socks"
+      volumes:
+        - /tmp/.htpasswd.elk:/etc/nginx/htpasswd.elk
+        - /tmp/nginx.conf:/etc/nginx/nginx.conf
+      ports: 
+        - "80:80"  
+      recreate: yes
+      state: started
+      restart_policy: always  
+
+      
+
   
