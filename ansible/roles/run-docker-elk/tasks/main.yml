@@ -49,14 +49,14 @@
 
   - name: copy nginx.conf to elk-server
     copy:
-      src: ./nginx.conf
+      src: "{{ WORKSPACE }}/nginx.conf"
       dest: /tmp
       force: yes
     become: yes
   
   - name: copy htpsswd to elk-server
     copy:
-      src: ./.htpasswd.elk
+      src: "{{ WORKSPACE }}/.htpasswd.elk"
       dest: /tmp
       force: yes
     become: yes  
