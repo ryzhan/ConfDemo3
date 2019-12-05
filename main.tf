@@ -4,11 +4,6 @@ provider "google" {
   region      = var.region
 }
 
-# terraform {
-#   backend "local" {
-#     path = "./terraform.tfstate.d/QA_Server/terraform.tfstate"
-#   }
-# }
 
 module "db-server" {
   source = "./modules/db-server"  
