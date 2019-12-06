@@ -3,6 +3,7 @@ if-101-demo1-02c2a2eae285.json
 read-registry.json
 terraform.tfstate
 terraform.tfstate.backup
+.htpasswd.elk
 id_rsa
 id_rsa.pub
 **/.terraform/*
