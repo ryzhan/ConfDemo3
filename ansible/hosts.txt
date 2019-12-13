@@ -4,10 +4,10 @@ app-server
 [db]
 db-server
 
-[elk]
-elk-server
+#[elk]
+#elk-server
 
 [server_all:children]
 app
 db
-elk
+#elk

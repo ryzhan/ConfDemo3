@@ -35,17 +35,12 @@
   roles:
     - run-docker-filebeat
   
-- name: Run elk docker containers on elk-server
-  gather_facts: No
-  hosts: elk
-
-  roles:
-    - run-docker-elk
-
-
-# - name: Create docker containers network on app-server
+# - name: Run elk docker containers on elk-server
 #   gather_facts: No
-#   hosts: app
-  
+#   hosts: elk
+
 #   roles:
-#     - add-docker-network-and-volumes
+#     - run-docker-elk
+
+
+
